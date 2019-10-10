@@ -9,8 +9,28 @@
 import SwiftUI
 
 struct ContentView: View {
+    let list = ["list1","list2"]
+    let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
+    
     var body: some View {
-        Text("Hello World")
+        NavigationView{
+            List {
+                ForEach(list, id: \.self) { index in
+                    Text(index.description)
+                }
+                
+                //i went to menu.swift and i made menusection Identifiable
+                ForEach(menu) { index in
+                    Section(header: Text(index.name)){
+                        ForEach(index.items){ item in
+                            ItemRow(item: item)
+                        }
+                    }
+                }
+            }
+            .navigationBarTitle("Menu")
+            .listStyle(GroupedListStyle())
+        }
     }
 }
 
