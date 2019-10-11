@@ -20,14 +20,20 @@ struct appView: View {
                 Image(systemName: "square.and.pencil")
                 Text("Order")
             }
+            
+            FavoriteView().tabItem{
+                Image(systemName: "heart")
+                Text("Favorites")
+            }
         }
     }
 }
 
 struct appView_Previews: PreviewProvider {
     static let order = Order()
+    static let favorites = Favorites()
     
     static var previews: some View {
-        appView().environmentObject(order)
+        appView().environmentObject(order).environmentObject(favorites)
     }
 }

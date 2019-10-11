@@ -11,17 +11,38 @@ import SwiftUI
 struct ItemDetail: View {
     //get the global order
     @EnvironmentObject var order: Order
+    @EnvironmentObject var favorites: Favorites
     //to make button go back
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
-    @State var showToast: Bool = false
-
+    static var numberOfPicks = [1,2,3,4,5]
+    @State private var numberOfPicks = 0
+    @State private var showAlert = false
 
     var item : MenuItem
     
     var body: some View {
         NavigationView{
             VStack(){
+                Spacer()
+                Button(action: {withAnimation {
+                    if(self.favorites.similarInside(item: self.item)){
+                        self.favorites.add(item: self.item)
+                    }
+                    else{
+                        self.favorites.remove(item: self.item)
+                    }
+                        
+                }}) {
+                    if(self.favorites.similarInside(item: self.item)){
+                        Image(systemName: "heart")
+                    }
+                    else{
+                        Image(systemName: "heart.fill")
+                    }
+                }
+                Spacer()
+                
                 ZStack(alignment: .bottomTrailing){
                     
                     Image(item.mainImage)
@@ -36,19 +57,33 @@ struct ItemDetail: View {
                 
                 Text(item.description).multilineTextAlignment(.center).padding()
                 
-                Button(action: {withAnimation {
-                    self.order.add(item: self.item)
-                    self.presentationMode.wrappedValue.dismiss()
-                    }}) {
-                  Text("Order This").font(.headline)
+                Section{
+                    Picker("How much?",selection: $numberOfPicks){
+                        ForEach(0 ..< Self.numberOfPicks.count){
+                            Text("\(Self.numberOfPicks[$0])")
+                        }
+                        }.pickerStyle(WheelPickerStyle()).padding(5)
                 }
+                
+                Button(action: {withAnimation {
+                    
+                    self.order.add(item: self.item, number: self.numberOfPicks)
+                    self.presentationMode.wrappedValue.dismiss()
+                    
+                }}) {
+                  Text("Order This").font(.headline)
+                }.alert(isPresented: $showAlert){
+                        Alert(title: Text("Order Confirmed"), message: Text("Your total was \(order.total)€ \n Thank you"),
+                              dismissButton: .default(Text("OK")))
+                }
+                
+                Spacer()
                 
 //                Button("Order This"){
 //                    self.order.add(item: self.item)
 //
 //                }.font(.headline)
                 
-                Spacer()
             }
             .navigationBarTitle(Text(item.name),displayMode: .inline)
             
@@ -59,56 +94,9 @@ struct ItemDetail: View {
 struct ItemDetail_Previews: PreviewProvider {
     
     static let order = Order()
+    static var favorites = Favorites()
     
     static var previews: some View {
-        ItemDetail(item : MenuItem.example).environmentObject(order)
+        ItemDetail(item : MenuItem.example).environmentObject(order).environmentObject(favorites)
     }
-}
-
-
-struct Toast<Presenting>: View where Presenting: View {
-
-    /// The binding that decides the appropriate drawing in the body.
-    @Binding var isShowing: Bool
-    /// The view that will be "presenting" this toast
-    let presenting: () -> Presenting
-    /// The text to show
-    let text: Text
-
-    var body: some View {
-
-        GeometryReader { geometry in
-
-            ZStack(alignment: .center) {
-
-                self.presenting()
-                    .blur(radius: self.isShowing ? 1 : 0)
-
-                VStack {
-                    self.text
-                }
-                .frame(width: geometry.size.width / 2,
-                       height: geometry.size.height / 5)
-                .background(Color.secondary.colorInvert())
-                .foregroundColor(Color.primary)
-                .cornerRadius(20)
-                .transition(.slide)
-                .opacity(self.isShowing ? 1 : 0)
-
-            }
-
-        }
-
-    }
-
-}
-
-extension View {
-
-    func toast(isShowing: Binding<Bool>, text: Text) -> some View {
-        Toast(isShowing: isShowing,
-              presenting: { self },
-              text: text)
-    }
-
 }

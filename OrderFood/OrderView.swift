@@ -21,18 +21,32 @@ struct OrderView: View {
                             Spacer()
                             Text("\(item.price)€")
                         }
-                    }
+                    }.onDelete(perform: deleteItems) //sosara!
                 }
                 
-                Section{
-                    NavigationLink(destination:Text("Check Out")){
-                        Text("Place Order")
+                if(order.items.count>0){
+                    Section{
+                        NavigationLink(destination:CheckOutView()){
+                          Text("Place Order")
+                        }
                     }
                 }
+                else{
+                    Text("You have not ordered something yet...")
+                }
+                
+                
                 }.navigationBarTitle("Order")
             .listStyle(GroupedListStyle())
+            .navigationBarItems(trailing: EditButton()) //sosara!! That help me to edit my list
         }
     }
+    
+    //sosara!! a func which deletes a spesific row
+    func deleteItems(position : IndexSet){
+        order.items.remove(atOffsets: position)
+    }
+    
 }
 
 struct OrderView_Previews: PreviewProvider {
