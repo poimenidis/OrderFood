@@ -34,4 +34,6 @@ class Favorites : ObservableObject{
             items.remove(at: index)
         }
     }
+    
+    
 }

@@ -24,7 +24,6 @@ struct ItemDetail: View {
     var body: some View {
         NavigationView{
             VStack(){
-                Spacer()
                 Button(action: {withAnimation {
                     if(self.favorites.similarInside(item: self.item)){
                         self.favorites.add(item: self.item)
@@ -41,7 +40,6 @@ struct ItemDetail: View {
                         Image(systemName: "heart.fill")
                     }
                 }
-                Spacer()
                 
                 ZStack(alignment: .bottomTrailing){
                     
@@ -55,7 +53,7 @@ struct ItemDetail: View {
                         .offset(x:-5,y:-5)
                 }
                 
-                Text(item.description).multilineTextAlignment(.center).padding()
+                Text(item.description).multilineTextAlignment(.center)
                 
                 Section{
                     Picker("How much?",selection: $numberOfPicks){
@@ -76,18 +74,18 @@ struct ItemDetail: View {
                         Alert(title: Text("Order Confirmed"), message: Text("Your total was \(order.total)€ \n Thank you"),
                               dismissButton: .default(Text("OK")))
                 }
-                
                 Spacer()
+                 Spacer()
+                
                 
 //                Button("Order This"){
 //                    self.order.add(item: self.item)
 //
 //                }.font(.headline)
                 
+           
             }
-            .navigationBarTitle(Text(item.name),displayMode: .inline)
-            
-        }
+        } .navigationBarTitle(Text(item.name),displayMode: .inline)
     }
 }
 

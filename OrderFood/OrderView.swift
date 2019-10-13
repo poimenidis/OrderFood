@@ -16,11 +16,16 @@ struct OrderView: View {
             List{
                 Section{
                     ForEach(order.items){ item in
+                        
                         HStack{
                             Text(item.name)
                             Spacer()
                             Text("\(item.price)€")
-                        }
+                        }.padding(8)
+                            .background(Color.white)
+                        .cornerRadius(10)
+                            .shadow(color:.gray,radius: 1,y: 1)
+                        
                     }.onDelete(perform: deleteItems) //sosara!
                 }
                 

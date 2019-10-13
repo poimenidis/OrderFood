@@ -34,7 +34,8 @@ struct CheckOutView: View {
     var body: some View {
         Form{
             Section{
-                Picker("How do you want pay?", selection: $paymentType.animation()){
+                Text("How do you want to pay?")
+                Picker("",selection: $paymentType.animation()){
                     ForEach(0 ..< Self.paymentType.count){
                         Text(Self.paymentType[$0])
                     }
@@ -62,7 +63,8 @@ struct CheckOutView: View {
 //            }
             
             Section(header:Text("TOTAL: \(self.totalPrice, specifier:"%.2f")€")){
-                Button(action: {withAnimation {
+                //use my customButton
+                CostumButton(action: {withAnimation {
                     
                     if self.paymentType == 1 && !(self.creditNumber==""){
                         self.showAlert = true
