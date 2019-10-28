@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    let list = ["Pick whatever you want!","Choose 'order' for check out"]
+    let list = ["Pick whatever you want!","Choose 'order' to check out"]
     let menu = Bundle.main.decode([MenuSection].self, from: "menu.json")
     
     var body: some View {

@@ -25,7 +25,12 @@ struct appView: View {
                 Image(systemName: "heart")
                 Text("Favorites")
             }
-        }
+            
+            LoginChatView().tabItem{
+                Image(systemName: "message")
+                Text("Chat")
+            }
+            }
     }
 }
 
