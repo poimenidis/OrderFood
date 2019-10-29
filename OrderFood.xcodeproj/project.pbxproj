@@ -12,6 +12,7 @@
 		E2029E9F234F90A60015A6AB /* appView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2029E9E234F90A60015A6AB /* appView.swift */; };
 		E2029EA1234FAD010015A6AB /* CheckOutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2029EA0234FAD010015A6AB /* CheckOutView.swift */; };
 		E2148E0F235223CC007134EE /* CostumButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2148E0E235223CC007134EE /* CostumButton.swift */; };
+		E242EAF9236820F6007FB0C1 /* MessageRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = E242EAF8236820F6007FB0C1 /* MessageRow.swift */; };
 		E24D565A23672A6E005C9EB8 /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24D565923672A6E005C9EB8 /* ChatView.swift */; };
 		E24E5537234F077400190EA9 /* ItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = E24E5536234F077400190EA9 /* ItemDetail.swift */; };
 		E266CFB52350C46600A2F6C7 /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = E266CFB42350C46600A2F6C7 /* Favorites.swift */; };
@@ -39,6 +40,7 @@
 		E2029E9E234F90A60015A6AB /* appView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appView.swift; sourceTree = "<group>"; };
 		E2029EA0234FAD010015A6AB /* CheckOutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutView.swift; sourceTree = "<group>"; };
 		E2148E0E235223CC007134EE /* CostumButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CostumButton.swift; sourceTree = "<group>"; };
+		E242EAF8236820F6007FB0C1 /* MessageRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageRow.swift; sourceTree = "<group>"; };
 		E24D565923672A6E005C9EB8 /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		E24E5536234F077400190EA9 /* ItemDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetail.swift; sourceTree = "<group>"; };
 		E266CFB42350C46600A2F6C7 /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		E274ABA5234DEEE300E834D9 /* OrderFood */ = {
 			isa = PBXGroup;
 			children = (
+				E242EAF8236820F6007FB0C1 /* MessageRow.swift */,
 				E24D565923672A6E005C9EB8 /* ChatView.swift */,
 				E2B6C6942366DCA300940AF8 /* LoginChatView.swift */,
 				E2148E0E235223CC007134EE /* CostumButton.swift */,
@@ -261,6 +264,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E242EAF9236820F6007FB0C1 /* MessageRow.swift in Sources */,
 				E2029E9F234F90A60015A6AB /* appView.swift in Sources */,
 				E274ABC1234DF94900E834D9 /* Order.swift in Sources */,
 				E274ABA7234DEEE300E834D9 /* AppDelegate.swift in Sources */,
